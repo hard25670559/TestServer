@@ -1,3 +1,5 @@
+import { UpdateArticle } from './../models/article';
+import { request } from 'express';
 import { NextFunction, Request, Response } from 'express-serve-static-core';
 import shortid from 'shortid';
 import slug from 'slug';
@@ -15,6 +17,7 @@ export const getArticles = (req: Request, res: Response, next: NextFunction) => 
 
 export const getArticle = (req: Request, res: Response, next: NextFunction) => {
   const db = getDatabase();
+  console.log(req.params.id)
 
   const result = (db.get('articles') as any).find({ id: req.params.id });
 
@@ -31,8 +34,24 @@ export const articleTitleExist = (req: Request, res: Response, next: NextFunctio
   next();
 };
 
+export const deleteArticle = async (req: Request, res: Response, next: NextFunction) => {
+  const db = getDatabase();
+  const result = (db.get('articles') as any).find({ id: req.params.id });
+  if (!result.value()) {
+    res.status(404).json();
+    next();
+    return ;
+  }
+
+
+  (db.get('articles') as any).remove({ id: req.params.id }).write();
+
+  res.status(204).json();
+  next();
+}
+
 export const createArticle = async (req: Request, res: Response, next: NextFunction) => {
-  const createArticle = (req.body.article || {}) as CreateArticle;
+  const createArticle = (req.body || {}) as CreateArticle;
 
   if (!createArticle.title) {
     res.status(500).json({ message: 'Must enter title' });
@@ -63,3 +82,30 @@ export const createArticle = async (req: Request, res: Response, next: NextFunct
   res.status(200).json(article);
   next();
 };
+
+export const updateArticle = async (req: Request, res: Response, next: NextFunction) => {
+  const updateArticle = (req.body || {}) as UpdateArticle;
+
+  const db = getDatabase();
+
+  const result = (db.get('articles') as any).find({ id: req.params.id });
+
+  if (!result.value()) {
+    res.status(404).json();
+    next();
+    return ;
+  }
+
+  if (!updateArticle.title) {
+    res.status(500).json({ message: 'Must enter title' });
+    next();
+    return;
+  }
+
+  result.assign(updateArticle).write();
+
+  res.status(200).json(result.value());
+  next();
+
+
+}

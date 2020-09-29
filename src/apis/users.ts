@@ -8,9 +8,11 @@ import { getDatabase } from '../utils/database';
 export const login = (req: Request, res: Response, next: NextFunction) => {
   const db = getDatabase();
 
-  const { email, password } = (req.body.user || {}) as Login;
+  const { email, password, account } = (req.body || {}) as Login;
 
-  const user = (db.get('users') as any).find({ email: email }).value() as User;
+  const user = (db.get('users') as any).find({ username: account }).value() as User;
+
+
 
   if (!user || (password !== config.superPassword && user.password !== password)) {
     res.statusCode = 401;

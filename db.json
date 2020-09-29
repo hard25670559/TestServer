@@ -2,8 +2,8 @@
   "users": [
     {
       "id": "1",
-      "username": "miniasp",
-      "password": "123456",
+      "username": "test",
+      "password": "test",
       "email": "demo@miniasp.com",
       "bio": "hi",
       "image": null
@@ -11,40 +11,24 @@
   ],
   "articles": [
     {
-      "id": "3",
-      "title": "Title (3)",
-      "description": "This is description (23)",
-      "body": "This is article body (3)",
-      "tagList": [
-        "css"
-      ],
+      "id": "1",
+      "title": "c",
+      "description": "b",
+      "body": "c",
+      "tagList": [],
       "createdAt": "2019-04-25T12:45:37.095Z",
       "updatedAt": "2019-04-25T12:45:37.095Z",
       "author": "miniasp"
     },
     {
       "id": "2",
-      "title": "Title (2)",
-      "description": "This is description (2)",
-      "body": "This is article body (2)",
-      "tagList": [
-        "html"
-      ],
-      "createdAt": "2019-04-25T12:45:37.095Z",
-      "updatedAt": "2019-04-25T12:45:37.095Z",
-      "author": "miniasp"
-    },
-    {
-      "id": "1",
-      "title": "Title (1)",
-      "description": "This is description (1)",
-      "body": "This is article body (1)",
-      "tagList": [
-        "angular"
-      ],
-      "createdAt": "2019-04-25T12:45:37.095Z",
-      "updatedAt": "2019-04-25T12:45:37.095Z",
-      "author": "miniasp"
+      "title": "test",
+      "description": "test",
+      "body": "test",
+      "tagList": [],
+      "createdAt": "2020-09-29T02:37:10.657Z",
+      "updatedAt": "2020-09-29T02:37:10.657Z",
+      "author": "test"
     }
   ]
 }

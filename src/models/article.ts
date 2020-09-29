@@ -15,3 +15,7 @@ export interface CreateArticle {
   body: string;
   tagList: string[];
 }
+
+export interface UpdateArticle extends CreateArticle {
+
+}
